@@ -52,12 +52,12 @@
       <div class="container-fluid page-body-wrapper">
 
 
-<div style="padding:4% 17% 0 1%">
+<div style="padding:4% 2% 0 1%">
 
-<table class="table">
+<table class="table table-striped table-dark table-responsive-sm"  style="color: #fff; "> 
     <h5>MY APPOINTMENTS</h5>
-  <thead>
-    <tr>
+  <thead> 
+    <tr style="color: #fff">
       <th scope="col">Patient Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
@@ -68,16 +68,27 @@
       <th scope="col">Alter Appointment</th>
     </tr>
   </thead>
-@foreach ($viewapp as $viewapps  )
+@foreach ($data as $appoint  )
     
     <tbody>
         <tr>
-        <th scope="row">1</th>
-        <td>{{ $viewapps->name }}</td>
+        <td>{{ $appoint->name }}</td>
 
-        <td class="btn btn-success" style="margin: 4px"><a style="text-decoration: none; color:#fff" href="#">Edit</a></td>
+        <td>{{ $appoint->email }}</td>
+
+        <td>{{ $appoint->phone }}</td>
+
+        <td>{{ $appoint->doctor }}</td>
+
+        <td>{{ $appoint->date }}</td>
+
+        <td>{{ $appoint->message }}</td>
+
+        <td>{{ $appoint->status }}</td>
+
+        <td class="btn btn-success" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('approved', $appoint->id) }}">Approved</a></td>
         
-        <td class="btn btn-danger" style="margin: 4px"><a onclick="return confirm('You are about to delete this!')" style="text-decoration: none; color:#fff" href="#">Delete</a></td>
+        <td class="btn btn-danger" style="margin: 4px"><a style="text-decoration: none; color:#fff" href="{{ url('canceled'), $appoint->id }}">Canceled</a></td>
 
 @endforeach
         </tr>  

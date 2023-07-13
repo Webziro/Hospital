@@ -54,3 +54,9 @@ Route::get('/deleteappoint/{id}', [HomeController::class, 'deleteappoint']);
 
 //Admin View Appointments 
 Route::get('/admin_view_appointment', [AdminController::class, 'admin_view_appointment']);
+
+//Admin Approve Appointments
+Route::get('/approved/{id}', [AdminController::class, 'approved']); 
+
+//Admin canceled Appointments
+Route::get('/canceled/{id}', [AdminController::class, 'canceled']); 

@@ -40,6 +40,22 @@ class AdminController extends Controller
     //Admin Show Appointments
     public function admin_view_appointment(){
         $data = appiontment::all();
-        return view('admin.admin_view_appointment', compact('$data'));
+        return view('admin.admin_view_appointment', compact('data'));
+    }
+
+    //Admin Approve Appointments
+    public function approved($id){
+        $data = appiontment::find($id);
+        $data->status = 'approved';
+        $data->save();
+        return redirect()->back();
+    }
+
+    //Admin canceled Appointments
+    public function canceled($id){
+        $data = appiontment::find($id);
+        $data->status = 'canceled';
+        $data->save();
+        return redirect()->back();
     }
 }
