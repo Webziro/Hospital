@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Doctor;
+
+use App\Models\Appiontment;
+
+use Illuminate\Http\Request;
+
+class AdminController extends Controller
+{
+    public function addview(){
+        {
+            return view('admin.add_doctor');
+        }
+    }
+
+    public function upload(Request $request){
+        $doctor = new Doctor;
+        $image = $request->file;
+        $imagename = time(). '.' .$image->getClientoriginalExtension();
+        $request->file->move('doctorimage', $imagename);
+        $doctor->image = $imagename;
+
+        $doctor->name = $request->name;
+
+        $doctor->phone = $request->phone;
+
+        $doctor->speciality = $request->speciality; 
+
+        $doctor->room = $request->room;
+
+        $doctor->message = $request->message;
+
+        $doctor->save();
+        return redirect()->back()->with('message', 'Doctor Added Successfully');
+    }
+
+    //Admin Show Appointments
+    public function admin_view_appointment(){
+        $data = appiontment::all();
+        return view('admin.admin_view_appointment', compact('$data'));
+    }
+}
