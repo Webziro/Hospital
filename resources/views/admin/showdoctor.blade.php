@@ -49,53 +49,51 @@
       {{-- This is nav bar --}}
       @include('admin.navbar')
 
+
       <div class="container-fluid page-body-wrapper">
-
-
-<div style="padding:4% 2% 0 1%">
+        
+            <div style="padding:4% 2% 0 1%">
 
 <table class="table table-striped table-dark table-responsive-sm"  style="color: #fff; "> 
     <h5>MY APPOINTMENTS</h5>
   <thead> 
     <tr style="color: #fff">
-      <th scope="col">Patient Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
       <th scope="col">Doctor's Name</th>
-      <th scope="col">Date</th>
-      <th scope="col">Message</th>
-      <th scope="col">Status</th>
-      <th scope="col">Alter Appointment</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Speciality</th>
+      <th scope="col">Room Nos.'s</th>
+      <th scope="col">Image</th>
+      <th scope="col">Alter Doctor</th>
     </tr>
   </thead>
-@foreach ($data as $appoint  )
     
+  @foreach ($data as $showdoctor )
+  
     <tbody>
         <tr>
-        <td>{{ $appoint->name }}</td>
+        <td>{{ $showdoctor->name }}</td>
+        <td>{{ $showdoctor->phone }}</td>
+        <td>{{ $showdoctor->speciality }}</td>
+        <td>{{ $showdoctor->room }}</td>
+        <td><img src="doctorimage/{{ $showdoctor->image }}" alt="Doctor's Image"></td>
 
-        <td>{{ $appoint->email }}</td>
+            <td class="btn btn-success" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('updatedoctor') }}">Update</a></td>
+            
+            <td class="btn btn-danger" style="margin: 4px"><a onclick="return confirm('You are about to delete this!')" style="text-decoration: none; color:#fff" href="{{ url('deletedoctor', $showdoctor->id) }}">Delete</a></td>
 
-        <td>{{ $appoint->phone }}</td>
+            {{-- <td class="btn btn-Primary" style="margin: 4px"><a style="text-decoration: none; color:#fff" href="{{ url('editdoctor', $showdoctor->id) }}">Edit</a></td> --}}
 
-        <td>{{ $appoint->doctor }}</td>
 
-        <td>{{ $appoint->date }}</td>
-
-        <td>{{ $appoint->message }}</td>
-
-        <td>{{ $appoint->status }}</td>
-
-        <td class="btn btn-success" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('approved', $appoint->id) }}">Approved</a></td>
-        
-        <td class="btn btn-danger" style="margin: 4px"><a style="text-decoration: none; color:#fff" href="{{ url('canceled', $appoint->id )}}">Canceled</a></td>
-
-@endforeach
         </tr>  
-    </tbody>    
+    </tbody>   
+        
+  @endforeach 
 </table>
 </div>
-</div>
+
+      </div>
+
+      </div>
 
 
     <!-- container-scroller -->

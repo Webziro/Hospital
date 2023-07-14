@@ -103,7 +103,6 @@
     <h5>MY APPOINTMENTS</h5>
   <thead>
     <tr>
-      <th scope="col">No.</th>
       <th scope="col">Doctor Name</th>
       <th scope="col">Date</th>
       <th scope="col">Message</th>
@@ -115,7 +114,6 @@
   @foreach ($appoint as $appoints )
     <tbody>
         <tr>
-        <th scope="row">1</th>
         <td>{{ $appoints->doctor }}</td>
         <td>{{ $appoints->date }}</td>
         <td>{{ $appoints->message }}</td>

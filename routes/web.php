@@ -60,3 +60,15 @@ Route::get('/approved/{id}', [AdminController::class, 'approved']);
 
 //Admin canceled Appointments
 Route::get('/canceled/{id}', [AdminController::class, 'canceled']); 
+
+//Show Doctor
+Route::get('/showdoctor', [AdminController::class, 'showdoctor']); 
+
+//Delete Doctor 
+Route::get('/deletedoctor/{id}', [AdminController::class, 'deletedoctor']); 
+
+//Edit Doctor
+// Route::get('/editdoctor/{id}', [AdminController::class, 'editdoctor']); 
+
+//Update Doctor
+Route::get('/updatedoctor', [AdminController::class, 'updatedoctor']); 
