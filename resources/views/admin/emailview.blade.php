@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+    <base href="/public">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Corona Admin</title>
@@ -50,46 +51,54 @@
       @include('admin.navbar')
 
 
-      <div class="container-fluid page-body-wrapper">
+      {{-- ADD A DOCTOR --}}
+    <div class="container-fluid page-body-wrapper">
+          <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp" style="padding: 10px">Send A Mail</h1>
+
+
+      @if(session()->has('message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{ session()->get('message') }}
+        </div>
+      @endif
+
+
+      <form class="main-form" action="{{ url('sendmail', $data->id) }}" method="POST">
+        @csrf
         
-            <div style="padding:4% 1% 0 1%">
+        <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class=" form-control" name="greeting" placeholder="Greeting" style="color: #060505" >
+          </div>
 
-<table class="table table-striped table-dark table-responsive-sm"  style="color: #fff; "> 
-    <h5>MY APPOINTMENTS</h5>
-  <thead> 
-    <tr style="color: #fff">
-      <th scope="col">Doctor's Name</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Speciality</th>
-      <th scope="col">Room Nos.'s</th>
-      <th scope="col">Image</th>
-      <th scope="col">Alter Doctor</th>
-    </tr>
-  </thead>
-    
-  @foreach ($data as $showdoctor )
-  
-    <tbody>
-        <tr>
-        <td>{{ $showdoctor->name }}</td>
-        <td>{{ $showdoctor->phone }}</td>
-        <td>{{ $showdoctor->speciality }}</td>
-        <td>{{ $showdoctor->room }}</td>
-        <td><img src="doctorimage/{{ $showdoctor->image }}" alt="Doctor's Image"></td>
+          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <textarea name="body" style="color: #fff"class="" rows="6" cols="25" placeholder="Enter message..."></textarea>
+          </div>
+        </div>
 
-            <td class="btn btn-success" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('updatedoctor', $showdoctor->id) }}">Update</a></td>
-            
-            <td class="btn btn-danger" style="margin: 4px"><a onclick="return confirm('You are about to delete this!')" style="text-decoration: none; color:#fff" href="{{ url('deletedoctor', $showdoctor->id) }}">Delete</a></td>
-        </tr> 
-    </tbody>   
-        
-  @endforeach 
-</table>
-</div>
+         <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class=" form-control" name="actiontext" placeholder="Action Text" style="color: #060505" >
+          </div>
 
-      </div>
+           <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class=" form-control" name="actionurl" placeholder="Action URL" style="color: #060505" >
+          </div>
 
-      </div>
+          <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class=" form-control" name="endpart" placeholder="End Part" style="color: #060505" >
+          </div>
+
+        <button type="submit" class="btn btn-danger mt-3 wow zoomIn">Send Mail</button>
+      </form>
+    </div>
+  </div> <!-- .page-section -->
+    </div>
 
 
     <!-- container-scroller -->

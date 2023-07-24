@@ -21,7 +21,13 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/home', [HomeController::class, 'redirect']);
+Route::get('/home', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
+
+Route::get('/about', [HomeController::class, 'redirect']);
+
+Route::get('/doctors', [HomeController::class, 'redirect']);
+
+
 
 
 
@@ -67,8 +73,15 @@ Route::get('/showdoctor', [AdminController::class, 'showdoctor']);
 //Delete Doctor 
 Route::get('/deletedoctor/{id}', [AdminController::class, 'deletedoctor']); 
 
-//Edit Doctor
-// Route::get('/editdoctor/{id}', [AdminController::class, 'editdoctor']); 
 
 //Update Doctor
-Route::get('/updatedoctor', [AdminController::class, 'updatedoctor']); 
+Route::get('/updatedoctor/{id}', [AdminController::class, 'updatedoctor']); 
+
+//Edit Doctor
+Route::post('/editdoctor/{id}', [AdminController::class, 'editdoctor']); 
+
+//Mail confirm
+Route::get('/sendmail/{id}', [AdminController::class, 'emailview']); 
+
+// //Send Mail
+Route::post('/sendmail/{id}', [AdminController::class, 'sendmail']); 

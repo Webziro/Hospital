@@ -54,10 +54,10 @@
 
 <div style="padding:4% 2% 0 1%">
 
-<table class="table table-striped table-dark table-responsive-sm"  style="color: #fff; "> 
+<table class="table table-striped table-dark table-responsive-sm"  style="color: #fff; > 
     <h5>MY APPOINTMENTS</h5>
   <thead> 
-    <tr style="color: #fff">
+    <tr style="color: #fff>
       <th scope="col">Patient Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
@@ -66,6 +66,7 @@
       <th scope="col">Message</th>
       <th scope="col">Status</th>
       <th scope="col">Alter Appointment</th>
+      <th scope="col">Send Mail</th>
     </tr>
   </thead>
 @foreach ($data as $appoint  )
@@ -89,6 +90,9 @@
         <td class="btn btn-success" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('approved', $appoint->id) }}">Approved</a></td>
         
         <td class="btn btn-danger" style="margin: 4px"><a style="text-decoration: none; color:#fff" href="{{ url('canceled', $appoint->id )}}">Canceled</a></td>
+
+        <td class="btn btn-secondary" style="margin: 2px"><a style="text-decoration: none; color:#fff" href="{{ url('sendmail', $appoint->id) }}">Send Mail</a></td>
+        
 
 @endforeach
         </tr>  
